@@ -65,9 +65,6 @@ function SearchPage() {
         navigate(`/app/product/${productId}`);
     };
 
-
-
-
     return (
         <div className="container mt-5">
             <div className="row justify-content-center">
