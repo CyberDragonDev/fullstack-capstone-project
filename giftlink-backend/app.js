@@ -3,7 +3,6 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const pinoLogger = require('./logger');
-const authRoutes = require('./routes/authRoutes');
 
 const connectToDatabase = require('./models/db');
 const { loadData } = require('./util/import-mongo/index');
@@ -11,7 +10,6 @@ const { loadData } = require('./util/import-mongo/index');
 const app = express();
 const port = 3060;
 app.use('*', cors());
-app.use('/api/auth', authRoutes);
 
 // Connect to MongoDB; we just do this one time
 connectToDatabase()
@@ -24,6 +22,7 @@ app.use(express.json());
 
 // Route files
 const giftRoutes = require('./routes/giftRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 // Search API Task 1: import the searchRoutes and store in a constant called searchRoutes
 //{{insert code here}}
@@ -35,6 +34,7 @@ app.use(pinoHttp({ logger }));
 
 // Use Routes
 app.use('/api/gifts', giftRoutes);
+app.use('/api/auth', authRoutes);
 
 // Search API Task 2: add the searchRoutes to the server by using the app.use() method.
 //{{insert code here}}
